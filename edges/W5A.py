@@ -72,21 +72,3 @@ while True:
 # close window 
 cv2.destroyAllWindows()
 cv2.imwrite(outfile, blended)
-
-
-
-
-"""
-laplacian = cv2.Laplacian(gray, cv2.CV_64F)
-laplacian_abs = cv2.convertScaleAbs(laplacian)
-threshold = 100
-_,thresholded_edges = cv.threshold(laplacian_abs, threshold ,255, cv.THRESH_BINARY)
-color_edges = cv.cvtColor(thresholded_edges, cv.COLOR_GRAY2BGR) 
-alpha = 0.5
-beta = 1.0 - alpha
-color_blended = cv.addWeighted(color_image, alpha, color_edges, beta, 0.0)
-cv.imshow('edges', laplacian_abs)
-cv.imshow('blended', color_blended)
-cv.waitKey(0)
-cv.destroyAllWindows()
-"""
