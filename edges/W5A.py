@@ -1,12 +1,15 @@
 # create image with edges
 import cv2
-import numpy as np
 
+# input filename
 #filename = f"edges/GoldenGateBridge.jpg"
 #filename = f"edges/BushnellUniversity.jpg"
 #filename = f"edges/MonaLisa.jpg"
 #filename = f"edges/QRCode.jpg"
 filename = f"edges/USCapitol.jpg"
+
+# output filename
+outfile = f"edges/outfile.jpg"
 
 # load color image
 color = cv2.imread(filename)
@@ -46,7 +49,8 @@ while True:
     # compute X and Y derivatives and gradient magnitude
     dx = cv2.Sobel(blur, cv2.CV_64F, 1, 0, ksize=3)
     dy = cv2.Sobel(blur, cv2.CV_64F, 0, 1, ksize=3)
-    grad = cv2.convertScaleAbs(np.abs(dx) + np.abs(dy))
+    mag = cv2.magnitude(dx, dy)
+    grad = cv2.convertScaleAbs(mag)
 
     # threshold the gradient to get binary edges
     _,edges = cv2.threshold(grad, thresh, 255, cv2.THRESH_BINARY)
@@ -67,6 +71,7 @@ while True:
 
 # close window 
 cv2.destroyAllWindows()
+cv2.imwrite(outfile, blended)
 
 
 
