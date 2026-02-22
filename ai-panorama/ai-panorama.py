@@ -54,7 +54,7 @@ def main():
     stitcher.setPanoConfidenceThresh(0.5) 
 
     # Use full resolution for feature registration
-    stitcher.setRegistrationResol(1.0)
+    stitcher.setRegistrationResol(0.5)
 
     # Disable wave correction (can distort 360 sets)
     stitcher.setWaveCorrection(False)
