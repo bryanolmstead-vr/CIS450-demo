@@ -1,7 +1,8 @@
 # final project
 #
-# to build: docker build -t edge-app .      
-# to run:   docker run -p 5000:5000 edge-app
+# to build:   docker build -t edge-app .      
+# to run:     docker run -p 5000:5000 edge-app
+# in browser: http://localhost:5000/edges
 
 from flask import Flask, request, send_file, render_template_string, send_from_directory
 import os
