@@ -12,6 +12,7 @@ app = Flask(__name__)
 
 UPLOAD_FOLDER = "static"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+LAST_T = 100
 
 HTML = """
 <h2>Image Processor</h2>
@@ -21,7 +22,7 @@ HTML = """
     <input type="file" name="file">
 
     <label>Threshold:</label>
-    <input type="number" name="T" value="100">
+    <input type="number" name="T" value="{{ threshold }}">
 
     <input type="submit" value="Run">
 </form>
@@ -60,7 +61,7 @@ def detect_edges(input_path, output_path, T=100):
 
 @app.route("/")
 def home():
-    return render_template_string(HTML)
+    return render_template_string(HTML, threshold=LAST_T)
 
 
 @app.route("/output.jpg")
@@ -71,17 +72,18 @@ def output_image():
 @app.route("/edges", methods=["POST"])
 def edges_route():
     T = request.form.get("T", default=100, type=int)
+    LAST_T = T
 
     file = request.files.get("file", None)
 
     original_path = os.path.join(UPLOAD_FOLDER, "original.jpg")
     output_path = os.path.join(UPLOAD_FOLDER, "output.jpg")
 
-    # ✅ If new file uploaded, overwrite stored image
+    # If a new file is uploaded, overwrite stored image
     if file and file.filename != "":
         file.save(original_path)
 
-    # ❗ If no file AND no existing image → error case
+    # If no file AND no existing image → error case
     if not os.path.exists(original_path):
         return "No image uploaded yet."
 
@@ -91,7 +93,7 @@ def edges_route():
         HTML,
         original="/static/original.jpg",
         processed="/static/output.jpg",
-        threshold=T
+        threshold=LAST_T
     )
 
 
