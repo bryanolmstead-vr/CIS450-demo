@@ -7,8 +7,11 @@
 from flask import Flask, request, send_file, render_template_string, send_from_directory
 import os
 import cv2
+import socket
 
 app = Flask(__name__)
+
+hostname = socket.gethostname()
 
 UPLOAD_FOLDER = "static"
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -16,6 +19,7 @@ LAST_T = 100
 
 HTML = """
 <h2>Image Processor</h2>
+<p><i>host={{ hostname }}</i></p>
 
 <form method="POST" action="/edges" enctype="multipart/form-data">
     <label>Image:</label>
@@ -61,7 +65,11 @@ def detect_edges(input_path, output_path, T=100):
 
 @app.route("/")
 def home():
-    return render_template_string(HTML, threshold=LAST_T)
+    return render_template_string(
+        HTML,
+        threshold=LAST_T,
+        hostname=hostname
+    )
 
 
 @app.route("/output.jpg")
@@ -93,9 +101,11 @@ def edges_route():
         HTML,
         original="/static/original.jpg",
         processed="/static/output.jpg",
-        threshold=LAST_T
+        threshold=LAST_T,
+        hostname=hostname
     )
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
