@@ -1,8 +1,8 @@
-# final project
+# final project example template
 #
-# to build:   docker build -t edge-app .      
-# to run:     docker run -p 5000:5000 edge-app
-# in browser: http://localhost:5000/edges
+# to build:   docker build -t app .      
+# to run:     docker run -p 80:80 app
+# in browser: http://localhost
 
 from flask import Flask, request, send_file, render_template_string, send_from_directory
 import os
@@ -87,11 +87,9 @@ def edges_route():
     original_path = os.path.join(UPLOAD_FOLDER, "original.jpg")
     output_path = os.path.join(UPLOAD_FOLDER, "output.jpg")
 
-    # If a new file is uploaded, overwrite stored image
     if file and file.filename != "":
         file.save(original_path)
 
-    # If no file AND no existing image → error case
     if not os.path.exists(original_path):
         return "No image uploaded yet."
 
@@ -107,5 +105,5 @@ def edges_route():
 
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
+    port = int(os.environ.get("PORT", 80))
     app.run(host="0.0.0.0", port=port)
