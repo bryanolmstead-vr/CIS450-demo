@@ -2,14 +2,10 @@
 import cv2
 
 # input filename
-#filename = f"edges/GoldenGateBridge.jpg"
-#filename = f"edges/BushnellUniversity.jpg"
-#filename = f"edges/MonaLisa.jpg"
-#filename = f"edges/QRCode.jpg"
-filename = f"edges/USCapitol.jpg"
+filename = f"map.png"
 
 # output filename
-outfile = f"edges/outfile.jpg"
+outfile = f"map.edges.jpg"
 
 # load color image
 color = cv2.imread(filename)
