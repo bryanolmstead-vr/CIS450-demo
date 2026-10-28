@@ -18,8 +18,9 @@ The player controls a paddle at the bottom of the game area to bounce a ball int
 
 - The game must have a clearly defined rectangular playing area.
 - The playing area must contain a paddle at the bottom, a ball, and three rows of bricks near the top.
-- All bricks must be royal blue (#4169E1).
-- The brick formation must extend across the full width of the playing area, with no gaps at the left or right boundaries that would allow the ball to travel behind the brick formation.
+- There are 5 rows of bricks
+- The color each row of bricks shall be red on top, followed by orange, yellow, green blue
+- There shall be a half brick gap on the left and right side
 - The game boundaries must prevent the ball from escaping the playing area. The ball must bounce off the left, right, and top boundaries.
 - Display the player's score and instructions for starting and controlling the game.
 - Display an appropriate message when the player wins or loses.
@@ -50,11 +51,14 @@ The player controls a paddle at the bottom of the game area to bounce a ball int
 
 ## 7. Losing the Ball
 
--If the ball passes below the paddle, the player loses the game.
+-The game starts with 3 lives (3 chances to win)
+-If the ball passes below the paddle, the player loses one of their lives.
+-The state of the bricks remains the same after losing a life.
 -The ball must stop moving when the game is lost.
--Display a clear "Game Over" message.
+-After losing 3 lives, display a clear "Game Over" message.
 -Provide a way to restart the game.
--Restarting must reset the score, restore all bricks, and return the ball and paddle to their starting positions.
+-When restarting with lives left, the bricks remain in the same state and the ball and paddel are returned to their starting positions.
+-Restarting with no lives left must reset the score, restore all bricks, and return the ball and paddle to their starting positions.
 
 ## 8. Game States and Restart
 
