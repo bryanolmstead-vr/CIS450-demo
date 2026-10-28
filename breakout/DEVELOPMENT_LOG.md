@@ -25,3 +25,13 @@ After implementation, summarize the files you created, explain how to run the ga
 8. Destroying all bricks produces a win state. PASS
 9. The player can restart and play a fresh game. PASS
 10. No external dependencies are required. PASS
+
+## Modified Spec
+
+Made modification to spec to be more realistic to original Atari game.
+
+## Second Test
+
+1. 5 rows of bricks: red, orange, yellow, green, blue. PASS
+2. half brick gap on left and right. PASS
+3. 3 lives. PASS
