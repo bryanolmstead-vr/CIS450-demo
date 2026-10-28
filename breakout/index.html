@@ -12,15 +12,16 @@
   <main>
     <h1>Breakout</h1>
     <div class="toolbar">
-      <p>Score: <span id="score">0</span> / 30</p>
+      <p>Score: <span id="score">0</span> / 50 · Lives: <span id="lives">3</span></p>
       <button id="start" type="button">Start game</button>
     </div>
     <canvas id="game" width="800" height="540" aria-label="Breakout playing area">
       Your browser must support canvas to play Breakout.
     </canvas>
     <p id="status" role="status">Ready — press Space or Start game.</p>
-    <p>Move with the left and right arrow keys. Break all 30 bricks to win.<br>
-      Missing the paddle ends the game. Press Space or the button to restart.</p>
+    <p>Move with the left and right arrow keys. Break all 50 bricks to win.<br>
+      You have three lives. Press Space or the button to launch again.<br>
+      With lives left, launching preserves your score and bricks; after a win or Game Over it starts a fresh game.</p>
     <footer><a href="LICENSE">MIT License · © 2026 CIS-450 Emergent Technologies</a></footer>
   </main>
 </body>
